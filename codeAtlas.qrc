@@ -1,0 +1,26 @@
+<RCC>
+    <qresource prefix="/CodeAtlas">
+      <file>Resources/altitude.png</file>
+      <file>Resources/cursor.png</file>
+
+      <file>Resources/privateFunc.png</file>
+      <file>Resources/privateFuncHover.png</file>
+      <file>Resources/privateFuncSelected.png</file>      
+      <file>Resources/protectedFunc.png</file>
+      <file>Resources/protectedFuncHover.png</file>
+      <file>Resources/protectedFuncSelected.png</file>      
+      <file>Resources/publicFunc.png</file>
+      <file>Resources/publicFuncHover.png</file>
+      <file>Resources/publicFuncSelected.png</file>
+
+      <file>Resources/privateVar.png</file>
+      <file>Resources/privateVarHover.png</file>
+      <file>Resources/privateVarSelected.png</file>
+      <file>Resources/protectedVar.png</file>
+      <file>Resources/protectedVarHover.png</file>
+      <file>Resources/protectedVarSelected.png</file>
+      <file>Resources/publicVar.png</file>
+      <file>Resources/publicVarHover.png</file>
+      <file>Resources/publicVarSelected.png</file>
+    </qresource>
+</RCC>

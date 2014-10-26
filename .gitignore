@@ -5,3 +5,19 @@ pigale/
 素材/
 tests/
 test/
+*.sdf
+*.psd
+Debug/
+Delaunay/My Amplifier XE Results - DelaunayDemo/
+Delaunay/Release/
+DelaunayTriangulation/
+JiaQian's BSpline/
+OGDF/
+OGDF Exercises/
+OGDF Result/
+QHull/
+*.ipch
+Release/
+*.ai
+Resources/buildings/
+Delaunay/res/

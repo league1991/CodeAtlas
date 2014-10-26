@@ -1,0 +1,506 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Plugin">
+      <UniqueIdentifier>{5786d665-fda3-4db2-ba12-3a3bfbabb06d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Plugin\Global">
+      <UniqueIdentifier>{bda2a7d9-b417-4f03-b73d-d76af25c7a91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DB">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="DB\SymbolTree">
+      <UniqueIdentifier>{6211811c-537b-405a-94c3-7d305b654f23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DB\SymbolTree\Layout">
+      <UniqueIdentifier>{026da3ce-038b-48c9-b004-735171b3adf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DB\SymbolTree\Iterator">
+      <UniqueIdentifier>{6db6dc1a-ca82-4431-a8cb-2630ec5ce5a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DB\SymbolTree\Edge">
+      <UniqueIdentifier>{f873af71-4d03-4be1-afc4-d0ac21aa4923}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DB\SymbolTree\Node">
+      <UniqueIdentifier>{121f6bec-59c1-413c-9d26-7d4bd63b9ca5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DB\WordLocator">
+      <UniqueIdentifier>{f47a3ffd-bf59-49c7-8afc-1e707bf925e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DB\CallGraph">
+      <UniqueIdentifier>{0099e600-d9f8-4a12-9531-86b1b8366aed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DB\DB">
+      <UniqueIdentifier>{43cb908b-7381-45de-91fc-ad012887b0f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{468383ab-224a-479a-8886-9b151bb6e382}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generated Files\Debug">
+      <UniqueIdentifier>{3299d310-3a2e-475b-9ca3-8d62eb2eaa74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generated Files\Release">
+      <UniqueIdentifier>{8cbf6fa0-a6d9-49a5-ae7b-a91bc9d56756}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{7796931e-6929-48fc-94a7-31d2339d4c86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{0dad3c24-c889-4e3b-ae1d-80e340fec97e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Renderer">
+      <UniqueIdentifier>{2d02a1ba-8a39-41e6-9c28-930ea1977a96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\UIItem">
+      <UniqueIdentifier>{9e4bc570-780e-4463-9100-f68bfbe131d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Lod">
+      <UniqueIdentifier>{b407b8d9-5dd7-4fd4-af14-2ab27b1c69e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\TextDisplay">
+      <UniqueIdentifier>{f5e506c0-11ea-4834-b5b2-008988e6946f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Image">
+      <UniqueIdentifier>{46cedeff-cca8-4192-80c5-a35d9c00f087}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Precompiled Header">
+      <UniqueIdentifier>{8723fe97-cebb-472d-a8b3-d030147263a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math &amp; Algorithm">
+      <UniqueIdentifier>{9f16caab-3127-4f69-ac3c-41ffa68c3399}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math &amp; Algorithm\SVD">
+      <UniqueIdentifier>{ebae37f5-ac36-43b7-b43d-c598dd697678}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math &amp; Algorithm\MDS">
+      <UniqueIdentifier>{67a89c22-3187-4ff9-b620-7d1433ef5c58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math &amp; Algorithm\PCA">
+      <UniqueIdentifier>{51643a9d-4142-4219-86c3-737ca830ab93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math &amp; Algorithm\Graph">
+      <UniqueIdentifier>{6ee59eac-7253-4de6-aa52-e4b7e8396249}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math &amp; Algorithm\LaplacianEigenMap">
+      <UniqueIdentifier>{e53e82d6-f95f-405a-89e4-f29aac24218f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math &amp; Algorithm\Geometry">
+      <UniqueIdentifier>{32ffec03-a123-4565-bd52-abe2a40a12ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math &amp; Algorithm\SimpleMath">
+      <UniqueIdentifier>{e12930fc-8d70-4e9e-9cd7-84fc45de8deb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{6f65c4f5-07e2-4e60-88c9-309c38d948a6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CodeAtlasPlugin.cpp">
+      <Filter>Plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalSetting.cpp">
+      <Filter>Plugin\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalUtility.cpp">
+      <Filter>Plugin\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="SymbolModifier.cpp">
+      <Filter>DB\SymbolTree</Filter>
+    </ClCompile>
+    <ClCompile Include="SymbolPath.cpp">
+      <Filter>DB\SymbolTree</Filter>
+    </ClCompile>
+    <ClCompile Include="SymbolTreeBuilder.cpp">
+      <Filter>DB\SymbolTree</Filter>
+    </ClCompile>
+    <ClCompile Include="SymbolUtility.cpp">
+      <Filter>DB\SymbolTree</Filter>
+    </ClCompile>
+    <ClCompile Include="ClassLayouter.cpp">
+      <Filter>DB\SymbolTree\Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentLayouter.cpp">
+      <Filter>DB\SymbolTree\Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="Layouter.cpp">
+      <Filter>DB\SymbolTree\Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElementLocator.cpp">
+      <Filter>DB\SymbolTree\Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="SymEdgeIter.cpp">
+      <Filter>DB\SymbolTree\Iterator</Filter>
+    </ClCompile>
+    <ClCompile Include="SymNodeIter.cpp">
+      <Filter>DB\SymbolTree\Iterator</Filter>
+    </ClCompile>
+    <ClCompile Include="SymbolEdge.cpp">
+      <Filter>DB\SymbolTree\Edge</Filter>
+    </ClCompile>
+    <ClCompile Include="SymbolEdgeAttr.cpp">
+      <Filter>DB\SymbolTree\Edge</Filter>
+    </ClCompile>
+    <ClCompile Include="SymbolNode.cpp">
+      <Filter>DB\SymbolTree\Node</Filter>
+    </ClCompile>
+    <ClCompile Include="SymbolNodeAttr.cpp">
+      <Filter>DB\SymbolTree\Node</Filter>
+    </ClCompile>
+    <ClCompile Include="WordExtractor.cpp">
+      <Filter>DB\WordLocator</Filter>
+    </ClCompile>
+    <ClCompile Include="CallGraphAnalyzer.cpp">
+      <Filter>DB\CallGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeAtlasDB.cpp">
+      <Filter>DB\DB</Filter>
+    </ClCompile>
+    <ClCompile Include="DBManager.cpp">
+      <Filter>DB\DB</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_CodeAtlasDB.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_CodeAtlasPlugin.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_CodeView.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_DBManager.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_MainUI.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_UIManager.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_CodeAtlasDB.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_CodeAtlasPlugin.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_CodeView.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_DBManager.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_MainUI.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_UIManager.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeScene.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeView.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="MainUI.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="BackgroundRenderer.cpp">
+      <Filter>UI\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="UIRenderer.cpp">
+      <Filter>UI\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="ClassUIItem.cpp">
+      <Filter>UI\UIItem</Filter>
+    </ClCompile>
+    <ClCompile Include="CursorUIItem.cpp">
+      <Filter>UI\UIItem</Filter>
+    </ClCompile>
+    <ClCompile Include="EdgeUIItem.cpp">
+      <Filter>UI\UIItem</Filter>
+    </ClCompile>
+    <ClCompile Include="FunctionUIItem.cpp">
+      <Filter>UI\UIItem</Filter>
+    </ClCompile>
+    <ClCompile Include="NodeUIItem.cpp">
+      <Filter>UI\UIItem</Filter>
+    </ClCompile>
+    <ClCompile Include="ProjectUIItem.cpp">
+      <Filter>UI\UIItem</Filter>
+    </ClCompile>
+    <ClCompile Include="UIItemModel.cpp">
+      <Filter>UI\UIItem</Filter>
+    </ClCompile>
+    <ClCompile Include="UIUtility.cpp">
+      <Filter>UI\UIItem</Filter>
+    </ClCompile>
+    <ClCompile Include="VariableUIItem.cpp">
+      <Filter>UI\UIItem</Filter>
+    </ClCompile>
+    <ClCompile Include="LodManager.cpp">
+      <Filter>UI\Lod</Filter>
+    </ClCompile>
+    <ClCompile Include="OverlapSolver.cpp">
+      <Filter>UI\TextDisplay</Filter>
+    </ClCompile>
+    <ClCompile Include="TextProcessor.cpp">
+      <Filter>UI\TextDisplay</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageArray.cpp">
+      <Filter>UI\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Precompiled Header</Filter>
+    </ClCompile>
+    <ClCompile Include="SVD\las2.c">
+      <Filter>Math &amp; Algorithm\SVD</Filter>
+    </ClCompile>
+    <ClCompile Include="SVD\svdlib.c">
+      <Filter>Math &amp; Algorithm\SVD</Filter>
+    </ClCompile>
+    <ClCompile Include="SVD\SVDSolver.cpp">
+      <Filter>Math &amp; Algorithm\SVD</Filter>
+    </ClCompile>
+    <ClCompile Include="SVD\svdutil.c">
+      <Filter>Math &amp; Algorithm\SVD</Filter>
+    </ClCompile>
+    <ClCompile Include="mds\MDSSolver.cpp">
+      <Filter>Math &amp; Algorithm\MDS</Filter>
+    </ClCompile>
+    <ClCompile Include="mds\StressMDSLib.cpp">
+      <Filter>Math &amp; Algorithm\MDS</Filter>
+    </ClCompile>
+    <ClCompile Include="PCASolver.cpp">
+      <Filter>Math &amp; Algorithm\PCA</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphUtility.cpp">
+      <Filter>Math &amp; Algorithm\Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="LaplacianSolver.cpp">
+      <Filter>Math &amp; Algorithm\LaplacianEigenMap</Filter>
+    </ClCompile>
+    <ClCompile Include="BSpline.cpp">
+      <Filter>Math &amp; Algorithm\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="GeometryUtility.cpp">
+      <Filter>Math &amp; Algorithm\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Triangle\triangle.c">
+      <Filter>Math &amp; Algorithm\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="MathUtility.cpp">
+      <Filter>Math &amp; Algorithm\SimpleMath</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_SymbolTreeBuilder.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Delaunay\DelaunayRoute.cpp">
+      <Filter>Math &amp; Algorithm\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_SymbolTreeBuilder.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\qrc_CodeAtlas.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\qrc_CodeAtlas.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GlobalSetting.h">
+      <Filter>Plugin\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalUtility.h">
+      <Filter>Plugin\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="SymbolModifier.h">
+      <Filter>DB\SymbolTree</Filter>
+    </ClInclude>
+    <ClInclude Include="SymbolPath.h">
+      <Filter>DB\SymbolTree</Filter>
+    </ClInclude>
+    <ClInclude Include="SymbolUtility.h">
+      <Filter>DB\SymbolTree</Filter>
+    </ClInclude>
+    <ClInclude Include="ClassLayouter.h">
+      <Filter>DB\SymbolTree\Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentLayouter.h">
+      <Filter>DB\SymbolTree\Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="Layouter.h">
+      <Filter>DB\SymbolTree\Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElementLocator.h">
+      <Filter>DB\SymbolTree\Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="SymEdgeIter.h">
+      <Filter>DB\SymbolTree\Iterator</Filter>
+    </ClInclude>
+    <ClInclude Include="SymNodeIter.h">
+      <Filter>DB\SymbolTree\Iterator</Filter>
+    </ClInclude>
+    <ClInclude Include="SymbolEdge.h">
+      <Filter>DB\SymbolTree\Edge</Filter>
+    </ClInclude>
+    <ClInclude Include="SymbolEdgeAttr.h">
+      <Filter>DB\SymbolTree\Edge</Filter>
+    </ClInclude>
+    <ClInclude Include="SymbolNode.h">
+      <Filter>DB\SymbolTree\Node</Filter>
+    </ClInclude>
+    <ClInclude Include="SymbolNodeAttr.h">
+      <Filter>DB\SymbolTree\Node</Filter>
+    </ClInclude>
+    <ClInclude Include="WordExtractor.h">
+      <Filter>DB\WordLocator</Filter>
+    </ClInclude>
+    <ClInclude Include="CallGraphAnalyzer.h">
+      <Filter>DB\CallGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_mainUI.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CodeScene.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="BackgroundRenderer.h">
+      <Filter>UI\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="UIRenderer.h">
+      <Filter>UI\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="ClassUIItem.h">
+      <Filter>UI\UIItem</Filter>
+    </ClInclude>
+    <ClInclude Include="CursorUIItem.h">
+      <Filter>UI\UIItem</Filter>
+    </ClInclude>
+    <ClInclude Include="EdgeUIItem.h">
+      <Filter>UI\UIItem</Filter>
+    </ClInclude>
+    <ClInclude Include="FunctionUIItem.h">
+      <Filter>UI\UIItem</Filter>
+    </ClInclude>
+    <ClInclude Include="NodeUIItem.h">
+      <Filter>UI\UIItem</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectUIItem.h">
+      <Filter>UI\UIItem</Filter>
+    </ClInclude>
+    <ClInclude Include="UIItemModel.h">
+      <Filter>UI\UIItem</Filter>
+    </ClInclude>
+    <ClInclude Include="UIUtility.h">
+      <Filter>UI\UIItem</Filter>
+    </ClInclude>
+    <ClInclude Include="VariableUIItem.h">
+      <Filter>UI\UIItem</Filter>
+    </ClInclude>
+    <ClInclude Include="LodManager.h">
+      <Filter>UI\Lod</Filter>
+    </ClInclude>
+    <ClInclude Include="OverlapSolver.h">
+      <Filter>UI\TextDisplay</Filter>
+    </ClInclude>
+    <ClInclude Include="TextProcessor.h">
+      <Filter>UI\TextDisplay</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageArray.h">
+      <Filter>UI\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Precompiled Header</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Precompiled Header</Filter>
+    </ClInclude>
+    <ClInclude Include="SVD\svdlib.h">
+      <Filter>Math &amp; Algorithm\SVD</Filter>
+    </ClInclude>
+    <ClInclude Include="SVD\SVDSolver.h">
+      <Filter>Math &amp; Algorithm\SVD</Filter>
+    </ClInclude>
+    <ClInclude Include="SVD\svdutil.h">
+      <Filter>Math &amp; Algorithm\SVD</Filter>
+    </ClInclude>
+    <ClInclude Include="mds\MDSSolver.h">
+      <Filter>Math &amp; Algorithm\MDS</Filter>
+    </ClInclude>
+    <ClInclude Include="mds\StressMDSLib.h">
+      <Filter>Math &amp; Algorithm\MDS</Filter>
+    </ClInclude>
+    <ClInclude Include="PCASolver.h">
+      <Filter>Math &amp; Algorithm\PCA</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphUtility.h">
+      <Filter>Math &amp; Algorithm\Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="LaplacianSolver.h">
+      <Filter>Math &amp; Algorithm\LaplacianEigenMap</Filter>
+    </ClInclude>
+    <ClInclude Include="BSpline.h">
+      <Filter>Math &amp; Algorithm\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Delaunay\Delaunay.h">
+      <Filter>Math &amp; Algorithm\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Delaunay\DelaunayRoute.h">
+      <Filter>Math &amp; Algorithm\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="GeometryUtility.h">
+      <Filter>Math &amp; Algorithm\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Triangle\triangle.h">
+      <Filter>Math &amp; Algorithm\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="MathUtility.h">
+      <Filter>Math &amp; Algorithm\SimpleMath</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="CodeAtlasPlugin.h">
+      <Filter>Plugin</Filter>
+    </CustomBuild>
+    <CustomBuild Include="SymbolTreeBuilder.h">
+      <Filter>DB\SymbolTree</Filter>
+    </CustomBuild>
+    <CustomBuild Include="CodeAtlasDB.h">
+      <Filter>DB\DB</Filter>
+    </CustomBuild>
+    <CustomBuild Include="DBManager.h">
+      <Filter>DB\DB</Filter>
+    </CustomBuild>
+    <CustomBuild Include="mainUI.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="CodeView.h">
+      <Filter>UI</Filter>
+    </CustomBuild>
+    <CustomBuild Include="MainUI.h">
+      <Filter>UI</Filter>
+    </CustomBuild>
+    <CustomBuild Include="UIManager.h">
+      <Filter>UI</Filter>
+    </CustomBuild>
+    <CustomBuild Include="codeAtlas.pluginspec">
+      <Filter>Plugin</Filter>
+    </CustomBuild>
+    <CustomBuild Include="codeAtlas.qrc">
+      <Filter>Resources</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CodeAtlas.json">
+      <Filter>Generated Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

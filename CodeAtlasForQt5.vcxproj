@@ -1,0 +1,418 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>CodeAtlas</ProjectName>
+    <ProjectGuid>{31C7C8B7-84CE-403C-89C9-28BAAA5708CA}</ProjectGuid>
+    <RootNamespace>Test1</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>11.0.50727.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(QTCREATORDIR)\lib\qtcreator\plugins\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <TargetName>$(ProjectName)d</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(QTCREATORDIR)\lib\qtcreator\plugins\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/Zm400 %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(QTDIR)\include\QtCore;$(QTDIR)\include\QtNetwork;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtTest;$(QTDIR)\include;$(QTCREATORDIR)\src;$(QTCREATORDIR)\src\shared;$(QTCREATORDIR)\src\libs;$(QTCREATORDIR)\src\plugins;$(QTCREATORDIR)\src\libs\3rdparty;$(QTDIR)\include\ActiveQt;debug;.;$(QTDIR)\mkspecs\default;.\GeneratedFiles;.\eigen3;.\ogdf;.\OpenMesh-2.0\src\;.\triangle;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;TEST1_EXPORTS;_CRT_SECURE_NO_WARNINGS;_USE_MATH_DEFINES;QT_GUI_LIB;USE_QT;USE_OPENMESH;NO_TIMER;ANSI_DECLARATORS;TRILIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>TextEditord.lib;Cored.lib;ProjectExplorerd.lib;Utilsd.lib;CPlusPlusd.lib;CppToolsd.lib;ExtensionSystemd.lib;LanguageUtilsd.lib;QtcSshd.lib;QmakeProjectManagerd.lib;Aggregationd.lib;CppEditord.lib;Qt5Testd.lib;Qt5Guid.lib;Qt5Networkd.lib;Qt5Cored.lib;Qt5UiToolsd.lib;Qt5Widgetsd.lib;ogdf.lib;psapi.lib;libOpenMeshCored.lib;libOpenMeshToolsd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;$(QTCREATORDIR)\lib\qtcreator;$(QTCREATORDIR)\lib\qtcreator\plugins;.\OGDF\Win32\LIB\Debug;.\OpenMesh-2.0\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>MSVCRT;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalOptions>/SAFESEH:NO %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/Zm400 %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>$(QTDIR)\include\QtCore;$(QTDIR)\include\QtNetwork;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtTest;$(QTDIR)\include;$(QTCREATORDIR)\src;$(QTCREATORDIR)\src\shared;$(QTCREATORDIR)\src\libs;$(QTCREATORDIR)\src\plugins;$(QTCREATORDIR)\src\libs\3rdparty;$(QTDIR)\include\ActiveQt;debug;.;$(QTDIR)\mkspecs\default;.\GeneratedFiles;.\eigen3;.\ogdf;.\OpenMesh-2.0\src\;.\triangle;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;QT_LARGEFILE_SUPPORT;IDE_LIBRARY_BASENAME=lib;USE_QT;USE_OPENMESH;QT_CREATOR;QT_NO_CAST_TO_ASCII;QT_USE_FAST_OPERATOR_PLUS;QT_USE_FAST_CONCATENATION;_CRT_SECURE_NO_WARNINGS;CODEATLAS_LIBRARY;_SCL_SECURE_NO_WARNINGS;QT_DLL;QT_NO_DEBUG;QT_PLUGIN;QT_GUI_LIB;QT_NETWORK_LIB;QT_CORE_LIB;QT_HAVE_MMX;QT_HAVE_3DNOW;QT_HAVE_SSE;QT_HAVE_MMXEXT;QT_HAVE_SSE2;QT_THREAD_SUPPORT;NDEBUG;_USE_MATH_DEFINES;NO_TIMER;ANSI_DECLARATORS;TRILIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat />
+      <DisableSpecificWarnings>4018;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>TextEditor.lib;Core.lib;CppTools.lib;ProjectExplorer.lib;Utils.lib;CPlusPlus.lib;ExtensionSystem.lib;LanguageUtils.lib;QtcSsh.lib;Aggregation.lib;CppEditor.lib;Qt5Test.lib;Qt5Gui.lib;Qt5Network.lib;Qt5Core.lib;Qt5Widgets.lib;ogdf.lib;psapi.lib;libOpenMeshCore.lib;libOpenMeshTools.lib;QmakeProjectManager.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName).dll</OutputFile>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;$(QTCREATORDIR)\lib\qtcreator;$(QTCREATORDIR)\lib\qtcreator\plugins;.\OGDF\Win32\LIB\Release;.\OpenMesh-2.0\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="CodeAtlasPlugin.cpp" />
+    <ClCompile Include="Delaunay\DelaunayRoute.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_SymbolTreeBuilder.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\qrc_CodeAtlas.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_SymbolTreeBuilder.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\qrc_CodeAtlas.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GlobalSetting.cpp" />
+    <ClCompile Include="GlobalUtility.cpp" />
+    <ClCompile Include="SymbolModifier.cpp" />
+    <ClCompile Include="SymbolPath.cpp" />
+    <ClCompile Include="SymbolTreeBuilder.cpp" />
+    <ClCompile Include="SymbolUtility.cpp" />
+    <ClCompile Include="ClassLayouter.cpp" />
+    <ClCompile Include="ComponentLayouter.cpp" />
+    <ClCompile Include="Layouter.cpp" />
+    <ClCompile Include="UIElementLocator.cpp" />
+    <ClCompile Include="SymEdgeIter.cpp" />
+    <ClCompile Include="SymNodeIter.cpp" />
+    <ClCompile Include="SymbolEdge.cpp" />
+    <ClCompile Include="SymbolEdgeAttr.cpp" />
+    <ClCompile Include="SymbolNode.cpp" />
+    <ClCompile Include="SymbolNodeAttr.cpp" />
+    <ClCompile Include="WordExtractor.cpp" />
+    <ClCompile Include="CallGraphAnalyzer.cpp" />
+    <ClCompile Include="CodeAtlasDB.cpp" />
+    <ClCompile Include="DBManager.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_CodeAtlasDB.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_CodeAtlasPlugin.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_CodeView.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_DBManager.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_MainUI.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_UIManager.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_CodeAtlasDB.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_CodeAtlasPlugin.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_CodeView.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_DBManager.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_MainUI.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_UIManager.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="CodeScene.cpp" />
+    <ClCompile Include="CodeView.cpp" />
+    <ClCompile Include="MainUI.cpp" />
+    <ClCompile Include="UIManager.cpp" />
+    <ClCompile Include="BackgroundRenderer.cpp" />
+    <ClCompile Include="UIRenderer.cpp" />
+    <ClCompile Include="ClassUIItem.cpp" />
+    <ClCompile Include="CursorUIItem.cpp" />
+    <ClCompile Include="EdgeUIItem.cpp" />
+    <ClCompile Include="FunctionUIItem.cpp" />
+    <ClCompile Include="NodeUIItem.cpp" />
+    <ClCompile Include="ProjectUIItem.cpp" />
+    <ClCompile Include="UIItemModel.cpp" />
+    <ClCompile Include="UIUtility.cpp" />
+    <ClCompile Include="VariableUIItem.cpp" />
+    <ClCompile Include="LodManager.cpp" />
+    <ClCompile Include="OverlapSolver.cpp" />
+    <ClCompile Include="TextProcessor.cpp" />
+    <ClCompile Include="ImageArray.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="SVD\las2.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsCpp</CompileAs>
+    </ClCompile>
+    <ClCompile Include="SVD\svdlib.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsCpp</CompileAs>
+    </ClCompile>
+    <ClCompile Include="SVD\SVDSolver.cpp" />
+    <ClCompile Include="SVD\svdutil.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsCpp</CompileAs>
+    </ClCompile>
+    <ClCompile Include="mds\MDSSolver.cpp" />
+    <ClCompile Include="mds\StressMDSLib.cpp" />
+    <ClCompile Include="PCASolver.cpp" />
+    <ClCompile Include="GraphUtility.cpp" />
+    <ClCompile Include="LaplacianSolver.cpp" />
+    <ClCompile Include="BSpline.cpp" />
+    <ClCompile Include="GeometryUtility.cpp" />
+    <ClCompile Include="Triangle\triangle.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsCpp</CompileAs>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsCpp</CompileAs>
+    </ClCompile>
+    <ClCompile Include="MathUtility.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="CodeAtlasPlugin.h">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing CodeAtlasPlugin.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(Configuration)\moc_%(Filename).cpp" "-fstdafx.h" "-f../../shared/qtcreator_gui_pch.h"   -D_CONSOLE -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DWITH_TESTS -DIDE_LIBRARY_BASENAME="lib" -DQT_CREATOR -DQT_NO_CAST_TO_ASCII -DQT_NO_CAST_FROM_ASCII -DQT_USE_FAST_OPERATOR_PLUS -DQT_USE_FAST_CONCATENATION -D_CRT_SECURE_NO_WARNINGS -DQT_DLL -DQT_PLUGIN -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -D_WINDLL "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtTest" "-I$(QTDIR)\include" "-I.\..\..\..\src" "-I.\..\..\libs" "-Ih:\Programs\QtCreator\qt-creator_master\qt-creator-league1991s-qt-creator-master\tools" "-I.\..\..\plugins" "-I.\..\..\libs\3rdparty" "-I$(QTDIR)\include\ActiveQt" "-I.\debug" "-I." "-I$(QTDIR)\mkspecs\default"
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;CodeAtlas.json;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(Configuration)\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing %(Filename)%(Extension)...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(Configuration)\moc_%(Filename).cpp"  "-fstdafx.h" "-f../../shared/qtcreator_gui_pch.h" -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DIDE_LIBRARY_BASENAME="lib" -DQT_CREATOR -DQT_NO_CAST_TO_ASCII -DQT_NO_CAST_FROM_ASCII -DQT_USE_FAST_OPERATOR_PLUS -DQT_USE_FAST_CONCATENATION -D_CRT_SECURE_NO_WARNINGS -DQT_DLL -DQT_NO_DEBUG -DQT_PLUGIN -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -DNDEBUG -D_WINDLL "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include" "-I.\..\..\..\src" "-I.\..\..\libs" "-I.\..\..\plugins" "-I.\..\..\libs\3rdparty" "-I$(QTDIR)\include\ActiveQt" "-I.\release" "-I." "-I$(QTDIR)\mkspecs\default"
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;CodeAtlas.json;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(Configuration)\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="GlobalSetting.h" />
+    <ClInclude Include="GlobalUtility.h" />
+    <ClInclude Include="SymbolModifier.h" />
+    <ClInclude Include="SymbolPath.h" />
+    <CustomBuild Include="SymbolTreeBuilder.h">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing %(Filename)</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(Configuration)\moc_%(Filename).cpp" "-fstdafx.h" "-f../../shared/qtcreator_gui_pch.h"   -D_CONSOLE -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DWITH_TESTS -DIDE_LIBRARY_BASENAME="lib" -DQT_CREATOR -DQT_NO_CAST_TO_ASCII -DQT_NO_CAST_FROM_ASCII -DQT_USE_FAST_OPERATOR_PLUS -DQT_USE_FAST_CONCATENATION -D_CRT_SECURE_NO_WARNINGS -DQT_DLL -DQT_PLUGIN -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -D_WINDLL "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtTest" "-I$(QTDIR)\include" "-I.\..\..\..\src" "-I.\..\..\libs" "-I.\..\..\plugins" "-I.\..\..\libs\3rdparty" "-I$(QTDIR)\include\ActiveQt" "-I.\debug" "-I." "-I$(QTDIR)\mkspecs\default"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(Configuration)\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing %(Filename)%(Extension)...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(Configuration)\moc_%(Filename).cpp"  "-fstdafx.h" "-f../../shared/qtcreator_gui_pch.h" -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DIDE_LIBRARY_BASENAME="lib" -DQT_CREATOR -DQT_NO_CAST_TO_ASCII -DQT_NO_CAST_FROM_ASCII -DQT_USE_FAST_OPERATOR_PLUS -DQT_USE_FAST_CONCATENATION -D_CRT_SECURE_NO_WARNINGS -DQT_DLL -DQT_NO_DEBUG -DQT_PLUGIN -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -DNDEBUG -D_WINDLL "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include" "-I.\..\..\..\src" "-I.\..\..\libs" "-I.\..\..\plugins" "-I.\..\..\libs\3rdparty" "-I$(QTDIR)\include\ActiveQt" "-I.\release" "-I." "-I$(QTDIR)\mkspecs\default"
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(Configuration)\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="SymbolUtility.h" />
+    <ClInclude Include="ClassLayouter.h" />
+    <ClInclude Include="ComponentLayouter.h" />
+    <ClInclude Include="Layouter.h" />
+    <ClInclude Include="UIElementLocator.h" />
+    <ClInclude Include="SymEdgeIter.h" />
+    <ClInclude Include="SymNodeIter.h" />
+    <ClInclude Include="SymbolEdge.h" />
+    <ClInclude Include="SymbolEdgeAttr.h" />
+    <ClInclude Include="SymbolNode.h" />
+    <ClInclude Include="SymbolNodeAttr.h" />
+    <ClInclude Include="WordExtractor.h" />
+    <ClInclude Include="CallGraphAnalyzer.h" />
+    <CustomBuild Include="CodeAtlasDB.h">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing CodeAtlasDB.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(Configuration)\moc_%(Filename).cpp" "-fstdafx.h" "-f../../shared/qtcreator_gui_pch.h"   -D_CONSOLE -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DWITH_TESTS -DIDE_LIBRARY_BASENAME="lib" -DQT_CREATOR -DQT_NO_CAST_TO_ASCII -DQT_NO_CAST_FROM_ASCII -DQT_USE_FAST_OPERATOR_PLUS -DQT_USE_FAST_CONCATENATION -D_CRT_SECURE_NO_WARNINGS -DQT_DLL -DQT_PLUGIN -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -D_WINDLL "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtTest" "-I$(QTDIR)\include" "-I.\..\..\..\src" "-I.\..\..\libs" "-Ih:\Programs\QtCreator\qt-creator_master\qt-creator-league1991s-qt-creator-master\tools" "-I.\..\..\plugins" "-I.\..\..\libs\3rdparty" "-I$(QTDIR)\include\ActiveQt" "-I.\debug" "-I." "-I$(QTDIR)\mkspecs\default"
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(Configuration)\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing %(Filename)%(Extension)...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(Configuration)\moc_%(Filename).cpp"  "-fstdafx.h" "-f../../shared/qtcreator_gui_pch.h" -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DIDE_LIBRARY_BASENAME="lib" -DQT_CREATOR -DQT_NO_CAST_TO_ASCII -DQT_NO_CAST_FROM_ASCII -DQT_USE_FAST_OPERATOR_PLUS -DQT_USE_FAST_CONCATENATION -D_CRT_SECURE_NO_WARNINGS -DQT_DLL -DQT_NO_DEBUG -DQT_PLUGIN -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -DNDEBUG -D_WINDLL "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include" "-I.\..\..\..\src" "-I.\..\..\libs" "-I.\..\..\plugins" "-I.\..\..\libs\3rdparty" "-I$(QTDIR)\include\ActiveQt" "-I.\release" "-I." "-I$(QTDIR)\mkspecs\default"
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(Configuration)\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="DBManager.h">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing DBManager.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(Configuration)\moc_%(Filename).cpp" "-fstdafx.h" "-f../../shared/qtcreator_gui_pch.h"   -D_CONSOLE -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DWITH_TESTS -DIDE_LIBRARY_BASENAME="lib" -DQT_CREATOR -DQT_NO_CAST_TO_ASCII -DQT_NO_CAST_FROM_ASCII -DQT_USE_FAST_OPERATOR_PLUS -DQT_USE_FAST_CONCATENATION -D_CRT_SECURE_NO_WARNINGS -DQT_DLL -DQT_PLUGIN -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -D_WINDLL "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtTest" "-I$(QTDIR)\include" "-I.\..\..\..\src" "-I.\..\..\libs" "-Ih:\Programs\QtCreator\qt-creator_master\qt-creator-league1991s-qt-creator-master\tools" "-I.\..\..\plugins" "-I.\..\..\libs\3rdparty" "-I$(QTDIR)\include\ActiveQt" "-I.\debug" "-I." "-I$(QTDIR)\mkspecs\default"
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(Configuration)\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing %(Filename)%(Extension)...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(Configuration)\moc_%(Filename).cpp"  "-fstdafx.h" "-f../../shared/qtcreator_gui_pch.h" -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DIDE_LIBRARY_BASENAME="lib" -DQT_CREATOR -DQT_NO_CAST_TO_ASCII -DQT_NO_CAST_FROM_ASCII -DQT_USE_FAST_OPERATOR_PLUS -DQT_USE_FAST_CONCATENATION -D_CRT_SECURE_NO_WARNINGS -DQT_DLL -DQT_NO_DEBUG -DQT_PLUGIN -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -DNDEBUG -D_WINDLL "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include" "-I.\..\..\..\src" "-I.\..\..\libs" "-I.\..\..\plugins" "-I.\..\..\libs\3rdparty" "-I$(QTDIR)\include\ActiveQt" "-I.\release" "-I." "-I$(QTDIR)\mkspecs\default"
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(Configuration)\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="GeneratedFiles\ui_mainUI.h" />
+    <ClInclude Include="CodeScene.h" />
+    <CustomBuild Include="CodeView.h">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing CodeView.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(Configuration)\moc_%(Filename).cpp" "-fstdafx.h" "-f../../shared/qtcreator_gui_pch.h"   -D_CONSOLE -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DWITH_TESTS -DIDE_LIBRARY_BASENAME="lib" -DQT_CREATOR -DQT_NO_CAST_TO_ASCII -DQT_NO_CAST_FROM_ASCII -DQT_USE_FAST_OPERATOR_PLUS -DQT_USE_FAST_CONCATENATION -D_CRT_SECURE_NO_WARNINGS -DQT_DLL -DQT_PLUGIN -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -D_WINDLL "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtTest" "-I$(QTDIR)\include" "-I.\..\..\..\src" "-I.\..\..\libs" "-Ih:\Programs\QtCreator\qt-creator_master\qt-creator-league1991s-qt-creator-master\tools" "-I.\..\..\plugins" "-I.\..\..\libs\3rdparty" "-I$(QTDIR)\include\ActiveQt" "-I.\debug" "-I." "-I$(QTDIR)\mkspecs\default"
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(Configuration)\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing %(Filename)%(Extension)...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(Configuration)\moc_%(Filename).cpp"  "-fstdafx.h" "-f../../shared/qtcreator_gui_pch.h" -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DIDE_LIBRARY_BASENAME="lib" -DQT_CREATOR -DQT_NO_CAST_TO_ASCII -DQT_NO_CAST_FROM_ASCII -DQT_USE_FAST_OPERATOR_PLUS -DQT_USE_FAST_CONCATENATION -D_CRT_SECURE_NO_WARNINGS -DQT_DLL -DQT_NO_DEBUG -DQT_PLUGIN -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -DNDEBUG -D_WINDLL "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include" "-I.\..\..\..\src" "-I.\..\..\libs" "-I.\..\..\plugins" "-I.\..\..\libs\3rdparty" "-I$(QTDIR)\include\ActiveQt" "-I.\release" "-I." "-I$(QTDIR)\mkspecs\default"
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(Configuration)\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="MainUI.h">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing MainUI.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(Configuration)\moc_%(Filename).cpp" "-fstdafx.h" "-f../../shared/qtcreator_gui_pch.h"   -D_CONSOLE -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DWITH_TESTS -DIDE_LIBRARY_BASENAME="lib" -DQT_CREATOR -DQT_NO_CAST_TO_ASCII -DQT_NO_CAST_FROM_ASCII -DQT_USE_FAST_OPERATOR_PLUS -DQT_USE_FAST_CONCATENATION -D_CRT_SECURE_NO_WARNINGS -DQT_DLL -DQT_PLUGIN -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -D_WINDLL "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtTest" "-I$(QTDIR)\include" "-I.\..\..\..\src" "-I.\..\..\libs" "-Ih:\Programs\QtCreator\qt-creator_master\qt-creator-league1991s-qt-creator-master\tools" "-I.\..\..\plugins" "-I.\..\..\libs\3rdparty" "-I$(QTDIR)\include\ActiveQt" "-I.\debug" "-I." "-I$(QTDIR)\mkspecs\default"
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(Configuration)\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing %(Filename)%(Extension)...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(Configuration)\moc_%(Filename).cpp"  "-fstdafx.h" "-f../../shared/qtcreator_gui_pch.h" -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DIDE_LIBRARY_BASENAME="lib" -DQT_CREATOR -DQT_NO_CAST_TO_ASCII -DQT_NO_CAST_FROM_ASCII -DQT_USE_FAST_OPERATOR_PLUS -DQT_USE_FAST_CONCATENATION -D_CRT_SECURE_NO_WARNINGS -DQT_DLL -DQT_NO_DEBUG -DQT_PLUGIN -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -DNDEBUG -D_WINDLL "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include" "-I.\..\..\..\src" "-I.\..\..\libs" "-I.\..\..\plugins" "-I.\..\..\libs\3rdparty" "-I$(QTDIR)\include\ActiveQt" "-I.\release" "-I." "-I$(QTDIR)\mkspecs\default"
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(Configuration)\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="UIManager.h">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing UIManager.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(Configuration)\moc_%(Filename).cpp" "-fstdafx.h" "-f../../shared/qtcreator_gui_pch.h"   -D_CONSOLE -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DWITH_TESTS -DIDE_LIBRARY_BASENAME="lib" -DQT_CREATOR -DQT_NO_CAST_TO_ASCII -DQT_NO_CAST_FROM_ASCII -DQT_USE_FAST_OPERATOR_PLUS -DQT_USE_FAST_CONCATENATION -D_CRT_SECURE_NO_WARNINGS -DQT_DLL -DQT_PLUGIN -DQT_TESTLIB_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -D_WINDLL "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtTest" "-I$(QTDIR)\include" "-I.\..\..\..\src" "-I.\..\..\libs" "-Ih:\Programs\QtCreator\qt-creator_master\qt-creator-league1991s-qt-creator-master\tools" "-I.\..\..\plugins" "-I.\..\..\libs\3rdparty" "-I$(QTDIR)\include\ActiveQt" "-I.\debug" "-I." "-I$(QTDIR)\mkspecs\default"
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(Configuration)\moc_%(Filename).cpp;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing %(Filename)%(Extension)...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(Configuration)\moc_%(Filename).cpp"  "-fstdafx.h" "-f../../shared/qtcreator_gui_pch.h" -D_WINDOWS -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DIDE_LIBRARY_BASENAME="lib" -DQT_CREATOR -DQT_NO_CAST_TO_ASCII -DQT_NO_CAST_FROM_ASCII -DQT_USE_FAST_OPERATOR_PLUS -DQT_USE_FAST_CONCATENATION -D_CRT_SECURE_NO_WARNINGS -DQT_DLL -DQT_NO_DEBUG -DQT_PLUGIN -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_HAVE_MMX -DQT_HAVE_3DNOW -DQT_HAVE_SSE -DQT_HAVE_MMXEXT -DQT_HAVE_SSE2 -DQT_THREAD_SUPPORT -DNDEBUG -D_WINDLL "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include" "-I.\..\..\..\src" "-I.\..\..\libs" "-I.\..\..\plugins" "-I.\..\..\libs\3rdparty" "-I$(QTDIR)\include\ActiveQt" "-I.\release" "-I." "-I$(QTDIR)\mkspecs\default"
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(Configuration)\moc_%(Filename).cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="BackgroundRenderer.h" />
+    <ClInclude Include="UIRenderer.h" />
+    <ClInclude Include="ClassUIItem.h" />
+    <ClInclude Include="CursorUIItem.h" />
+    <ClInclude Include="EdgeUIItem.h" />
+    <ClInclude Include="FunctionUIItem.h" />
+    <ClInclude Include="NodeUIItem.h" />
+    <ClInclude Include="ProjectUIItem.h" />
+    <ClInclude Include="UIItemModel.h" />
+    <ClInclude Include="UIUtility.h" />
+    <ClInclude Include="VariableUIItem.h" />
+    <ClInclude Include="LodManager.h" />
+    <ClInclude Include="OverlapSolver.h" />
+    <ClInclude Include="TextProcessor.h" />
+    <ClInclude Include="ImageArray.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="SVD\svdlib.h" />
+    <ClInclude Include="SVD\SVDSolver.h" />
+    <ClInclude Include="SVD\svdutil.h" />
+    <ClInclude Include="mds\MDSSolver.h" />
+    <ClInclude Include="mds\StressMDSLib.h" />
+    <ClInclude Include="PCASolver.h" />
+    <ClInclude Include="GraphUtility.h" />
+    <ClInclude Include="LaplacianSolver.h" />
+    <ClInclude Include="BSpline.h" />
+    <ClInclude Include="Delaunay\Delaunay.h" />
+    <ClInclude Include="Delaunay\DelaunayRoute.h" />
+    <ClInclude Include="GeometryUtility.h" />
+    <ClInclude Include="Triangle\triangle.h" />
+    <ClInclude Include="MathUtility.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="mainUI.ui">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Filename)%(Extension)...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Uic%27ing %(Filename)%(Extension)...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"
+</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="codeAtlas.pluginspec">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy /y CodeAtlas.pluginspec $(QTCREATORDIR)\lib\qtcreator\plugins\CodeAtlas.pluginspec
+if errorlevel 1 goto VCEnd
+$(QTDIR)\bin\xmlpatterns -no-format -output CodeAtlas.json $(QTCREATORDIR)/src/qtcreatorplugin2json.xsl ./CodeAtlas.pluginspec</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">COPY CodeAtlas.pluginspec, Create Qt 5 plugin json file</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTCREATORDIR)\lib\qtcreator\plugins\CodeAtlas.pluginspec;CodeAtlas.json;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CodeAtlas.pluginspec;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">copy /y CodeAtlas.pluginspec $(QTCREATORDIR)\lib\qtcreator\plugins\CodeAtlas.pluginspec
+if errorlevel 1 goto VCEnd
+$(QTDIR)\bin\xmlpatterns -no-format -output CodeAtlas.json $(QTCREATORDIR)/src/qtcreatorplugin2json.xsl CodeAtlas.pluginspec</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">COPY CodeAtlas.pluginspec, Create Qt 5 plugin json file</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTCREATORDIR)\lib\qtcreator\plugins\CodeAtlas.pluginspec;CodeAtlas.json;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CodeAtlas.pluginspec;%(AdditionalInputs)</AdditionalInputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="codeAtlas.qrc">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\rcc.exe -name CodeAtlas CodeAtlas.qrc -o GeneratedFiles\debug\qrc_CodeAtlas.cpp</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">RCC CodeAtlas.qrc</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\qrc_CodeAtlas.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CodeAtlas.qrc;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\rcc.exe -name CodeAtlas CodeAtlas.qrc -o GeneratedFiles\release\qrc_CodeAtlas.cpp</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">RCC CodeAtlas.qrc</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\qrc_CodeAtlas.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CodeAtlas.qrc;%(AdditionalInputs)</AdditionalInputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CodeAtlas.json" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
