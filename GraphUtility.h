@@ -77,10 +77,35 @@ public:
 									int& srcVtx, int& tarVtx);
 
 	static bool getSubGraph( const SparseMatrix& vtxEdgeMatrix, const bool *const isVtxValid, SparseMatrix& subGraphVEMat);
+
+	// kruskal algorithm used to find spanning tree
+	// the input graph must have only one connected component
+	static bool getSpanningTree(const SparseMatrix& vtxEdgeMatrix, const VectorXf& edgeLength, 
+								int* parentArray, int* parentEdgeLength = NULL,
+								bool isMinTree = true, int rootIdx = 0);	
+	
+	// first, generate a maximum spanning tree using prim algorithm
+	// then compute the pair distance in that tree
+	// the input graph must have only one connected component
+	// vtxEdgeMatrix	(nVtx, nEdge)	vertex-edge incidence matrix
+	// distMat			(nVtx, nVtx)	pair distance matrix, record the distance of nodes in the maximum spanning tree
+	// pEdgeWeight		(1,nEdge)		edge weight matrix used to determine which edge should be selected in the spanning tree
+	// isMaxTree						if set to true, use the maximum spanning tree, otherwise used the minimum one
+	static bool computePairDistInTree(	const SparseMatrix& vtxEdgeMatrix, Eigen::MatrixXf& distMat, const VectorXf* pEdgeWeight = NULL, bool isMaxTree = true);
+	
 	static const int			s_defaultBaseLevel	= 1;
 	static const int			s_srcTag			= 1;
 	static const int			s_tarTag			= -1;
 private:
+
+	static inline int findRoot(int* parent, int node)
+	{
+		if (parent[node] != node)
+		{
+			parent[node] = findRoot(parent, parent[node]);
+		}
+		return parent[node];
+	}
 	struct Component 
 	{
 		Component():m_nVtx(0), m_nEdge(0){}
@@ -89,6 +114,14 @@ private:
 		int						m_nEdge;
 	};
 
+	struct Edge
+	{
+		Edge(int src, int tar, float weight):m_src(src), m_tar(tar), m_weight(weight){}
+		bool operator<(const Edge& other)const{return this->m_weight < other.m_weight;}
+
+		int m_src, m_tar;
+		float m_weight;
+	};
 };
 
 

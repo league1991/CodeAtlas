@@ -48,19 +48,13 @@ bool ClassLayouter::computeNormally()
 
 	float maxEdgeWeight = edgeWeight.maxCoeff();
 	float minEdgeWeight = edgeWeight.minCoeff();
-	VectorXi nodeEdgeCount;
-	nodeEdgeCount.setZero(nNodes);
 	for (int ithEdge = 0; ithEdge < nEdges; ++ithEdge)
 	{
 		int src, dst;
 		GraphUtility::getVtxFromEdge(veMat, ithEdge, src, dst);
-		if (!isUseOrthoLayout && nodeEdgeCount[src] > 2 && nodeEdgeCount[dst] > 2 && 0)
-			continue;
 		edgeArray.push_back(G.newEdge(nodeArray[src], nodeArray[dst]));
 		//GA.doubleWeight(edgeArray.back()) = edgeWeight[ithEdge];
 		edgeLength[edgeArray.back()] = 1;//log(edgeWeight[ithEdge] + 1);
-		nodeEdgeCount[src]++;
-		nodeEdgeCount[dst]++;
 	}
 
 
@@ -139,7 +133,7 @@ bool ClassLayouter::computeNormally()
 			m_postProcessor.getFinalPos(pos);
 		}
 	}
-	catch(AlgorithmFailureException e)
+	catch(...)//AlgorithmFailureException e
 	{
 		return false;
 	}

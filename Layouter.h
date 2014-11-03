@@ -6,6 +6,7 @@
 #define CHECK_RETURN_VOID(x,y) {if(x & y)return;}
 
 #define EDGE_ROUTE_USE_BSPLINE
+//#define WRITE_DELAUNAY_MESH
 using namespace Eigen;
 
 namespace CodeAtlas
@@ -90,7 +91,9 @@ namespace CodeAtlas
 			const VectorXi& hashID,
 			MatrixXf& finalPos2D,
 			float&    finalRadius,
-			float     sparseFactor = 1.f);
+			float     sparseFactor = 1.f,
+			float  paddingRatio = 0.1f,
+			float  minPadding  = LayoutSetting::s_baseRadius * 10);
 
 		static void			laplacianEigMap(
 			const MatrixXd& laplacian,
@@ -100,8 +103,14 @@ namespace CodeAtlas
 			float&    finalRadius,
 			float     sparseFactor = 1.3f);
 
+
 	protected:
 		void	trivalLayout();
+		static bool	graphLayout(const SparseMatrix& veMat, 
+							const VectorXf& radiusVec,
+							MatrixXf& finalPos2D,
+							float&    finalRadius,
+							float     sparseFactor = 1.f);
 		bool    computeEdgeRoute(DelaunayCore::DelaunayRouter router);
 		bool	computeVisualHull(float padding);
 

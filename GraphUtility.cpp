@@ -449,3 +449,213 @@ bool CodeAtlas::GraphUtility::getSubGraph( const SparseMatrix& vtxEdgeMatrix, co
 	subGraphVEMat.makeCompressed();
 	return true;
 }
+
+bool CodeAtlas::GraphUtility::getSpanningTree( const SparseMatrix& vtxEdgeMatrix, const VectorXf& edgeLength, int* parentArray, int* parentEdgeLength /*= NULL*/, bool isMinTree /*= true*/, int rootIdx /*= 0*/ )
+{
+	int nVtx   = vtxEdgeMatrix.rows();
+	if (nVtx <= 0)
+		return false;
+
+	// initialize parent array
+	vector<int> setParentArray(nVtx);
+	vector<int> subTreeSize(nVtx);
+	for (int i = 0; i < nVtx; ++i)
+	{
+		parentArray[i] = i;
+		setParentArray[i] = i;
+		subTreeSize[i] = 1;
+	}
+	if (parentEdgeLength)
+		for (int i = 0; i < nVtx; ++i)
+			parentEdgeLength[i] = 0;
+
+	int nEdge  = vtxEdgeMatrix.cols();
+	if (nEdge <= 0)
+		return true;
+
+	// extract edge array
+	vector<Edge> edgeArray;
+	edgeArray.reserve(nEdge);
+	for (int ithEdge = 0; ithEdge < nEdge; ++ithEdge)
+	{
+		int srcVtx, tarVtx;
+		getVtxFromEdge(vtxEdgeMatrix, ithEdge, srcVtx, tarVtx);
+		edgeArray.push_back(Edge(srcVtx, tarVtx, edgeLength[ithEdge]));
+	}
+
+	sort(edgeArray.begin(), edgeArray.end());
+
+	// determine traversal order
+	int begEdge = isMinTree ? 0 : nEdge-1;
+	int endEdge = isMinTree ? nEdge : -1;
+	int incrEdge = isMinTree ? 1 : -1;
+
+	struct Node
+	{
+		vector<int> m_adjID;
+		vector<float>m_adjLength;
+		int			m_tag;
+	};
+	vector<Node> graph(nVtx);
+
+	// find minimum/maximum spanning tree
+	for (int ithEdge = begEdge; ithEdge != endEdge; ithEdge += incrEdge)
+	{
+		Edge& edge = edgeArray[ithEdge];
+		int srcRoot = findRoot(&setParentArray[0], edge.m_src);
+		int tarRoot = findRoot(&setParentArray[0], edge.m_tar);
+
+		// if src and tar belong to the same connected component, ignore this edge
+		if (srcRoot == tarRoot)
+			continue;
+
+		if (subTreeSize[srcRoot] > subTreeSize[tarRoot])
+		{
+			setParentArray[tarRoot] = srcRoot;
+			subTreeSize[srcRoot] = subTreeSize[srcRoot] + subTreeSize[tarRoot];
+		}
+		else
+		{
+			setParentArray[srcRoot] = tarRoot;
+			subTreeSize[tarRoot] = subTreeSize[tarRoot] + subTreeSize[srcRoot];
+		}
+
+		graph[edge.m_src].m_adjID.push_back(edge.m_tar);
+		graph[edge.m_tar].m_adjID.push_back(edge.m_src);
+
+		if (parentEdgeLength)
+		{
+			graph[edge.m_src].m_adjLength.push_back(edge.m_weight);
+			graph[edge.m_tar].m_adjLength.push_back(edge.m_weight);
+		}
+	}
+
+	// BFS traversal
+	for (int i = 0; i < graph.size(); ++i)
+		graph[i].m_tag = 0;
+
+	queue<int> nodeQueue;
+	nodeQueue.push(rootIdx);
+	graph[rootIdx].m_tag = 1;
+	while (!nodeQueue.empty())
+	{
+		int nodeIdx = nodeQueue.front();
+		nodeQueue.pop();
+		Node& node = graph[nodeIdx];
+
+		// find neighbour
+		for (int ithAdj = 0; ithAdj < node.m_adjID.size(); ++ithAdj)
+		{
+			int adjNodeID = node.m_adjID[ithAdj];
+			Node& adjNode = graph[adjNodeID];
+			if (adjNode.m_tag == 1)
+				continue;
+
+			// record parent data
+			adjNode.m_tag = 1;
+			nodeQueue.push(adjNodeID);
+			parentArray[adjNodeID] = nodeIdx;
+			if (parentEdgeLength)
+				parentEdgeLength[adjNodeID] = node.m_adjLength[ithAdj];
+		}
+	}
+	return true;
+}
+
+bool CodeAtlas::GraphUtility::computePairDistInTree( const SparseMatrix& vtxEdgeMatrix, Eigen::MatrixXf& distMat, const VectorXf* pEdgeWeight /*= NULL*/, bool isMaxTree /*= true*/ )
+{
+	// check and initialize distMat
+	int nVtx   = vtxEdgeMatrix.rows();
+	if (nVtx <= 0)
+		return false;
+
+	distMat.setConstant(nVtx, nVtx, FLT_MAX);
+	for (int i = 0; i < nVtx; ++i)
+		distMat(i,i) = 0;
+
+	int nEdge  = vtxEdgeMatrix.cols();
+	if (nEdge <= 0)
+		return true;
+
+	// initialize edge weight
+	VectorXf edgeWeight;
+	if (pEdgeWeight && pEdgeWeight->size() == nEdge)
+	{
+		edgeWeight = *pEdgeWeight;	// negate the edge weights 
+		if (isMaxTree)
+			edgeWeight *= -1;
+	}
+	else
+		edgeWeight.setOnes(nEdge);
+
+	// build graph data structure
+	struct Node
+	{
+		Node():m_tag(0){}
+		vector<int> m_adjID;
+		vector<float>m_adjLength;
+		int			m_tag;
+	};
+	vector<Node> nodeArray(nVtx);
+	for (int ithEdge = 0; ithEdge != nEdge; ithEdge++)
+	{
+		int src, tar;
+		getVtxFromEdge(vtxEdgeMatrix, ithEdge, src, tar);
+		nodeArray[src].m_adjID.push_back(tar);
+		nodeArray[tar].m_adjID.push_back(src);
+
+		nodeArray[src].m_adjLength.push_back(edgeWeight[ithEdge]);
+		nodeArray[tar].m_adjLength.push_back(edgeWeight[ithEdge]);
+	}
+
+	vector<int> nodeSet;
+	nodeSet.reserve(nVtx);
+	priority_queue<Edge> edgeQueue;
+
+	// push root node
+	const int rootIdx = 0;
+	nodeSet.push_back(rootIdx);
+	Node& root = nodeArray[rootIdx];
+	root.m_tag = 1;
+	for (int i = 0; i < root.m_adjID.size(); ++i)
+		edgeQueue.push(Edge(rootIdx, root.m_adjID[i], root.m_adjLength[i]));
+
+	while (!edgeQueue.empty())
+	{
+		Edge curEdge = edgeQueue.top();
+		edgeQueue.pop();
+
+		// ignore unnecessary edges
+		Node& srcNode = nodeArray[curEdge.m_src];
+		Node& tarNode = nodeArray[curEdge.m_tar];
+		if (srcNode.m_tag == 1 && tarNode.m_tag == 1)
+			continue;
+
+		// find new node and compute its distance to all nodes in nodeSet
+		int   newID    = srcNode.m_tag == 1 ? curEdge.m_tar : curEdge.m_src;
+		int   parentID = srcNode.m_tag == 1 ? curEdge.m_src : curEdge.m_tar;
+		for (int i = 0; i < nodeSet.size(); ++i)
+		{
+			int nodeID = nodeSet[i];
+			// There is only one path from any node in nodeSet to the new node,
+			// so the distance is the length of that path.
+			float dist = distMat(nodeID, parentID) + 1;
+			distMat(nodeID, newID) = distMat(newID, nodeID) = dist; 
+		}
+
+		// add new node to nodeSet
+		Node& newNode = nodeArray[newID];
+		newNode.m_tag = 1;
+		nodeSet.push_back(newID);
+
+		// add its neighbour edges
+		for (int ithAdj = 0; ithAdj < newNode.m_adjID.size(); ++ithAdj)
+		{
+			int adjID = newNode.m_adjID[ithAdj];
+			if (nodeArray[adjID].m_tag != 0)
+				continue;
+			edgeQueue.push(Edge(newID, adjID, newNode.m_adjLength[ithAdj]));
+		}
+	}
+	return true;
+}

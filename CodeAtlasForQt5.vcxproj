@@ -64,6 +64,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
       <AdditionalDependencies>TextEditord.lib;Cored.lib;ProjectExplorerd.lib;Utilsd.lib;CPlusPlusd.lib;CppToolsd.lib;ExtensionSystemd.lib;LanguageUtilsd.lib;QtcSshd.lib;QmakeProjectManagerd.lib;Aggregationd.lib;CppEditord.lib;Qt5Testd.lib;Qt5Guid.lib;Qt5Networkd.lib;Qt5Cored.lib;Qt5UiToolsd.lib;Qt5Widgetsd.lib;ogdf.lib;psapi.lib;libOpenMeshCored.lib;libOpenMeshToolsd.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -75,6 +76,9 @@
       <TargetMachine>MachineX86</TargetMachine>
       <AdditionalOptions>/SAFESEH:NO %(AdditionalOptions)</AdditionalOptions>
     </Link>
+    <Bscmake>
+      <PreserveSbr>true</PreserveSbr>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -100,6 +104,10 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
+    <PostBuildEvent>
+      <Command>copy $(OutDir)$(ProjectName).dll $(QTDIR)\..\..\Tools\QtCreator\lib\qtcreator\plugins\$(ProjectName).dll
+copy CodeAtlas.pluginspec $(QTDIR)\..\..\Tools\QtCreator\lib\qtcreator\plugins\CodeAtlas.pluginspec</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CodeAtlasPlugin.cpp" />
@@ -376,9 +384,6 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
     </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="codeAtlas.pluginspec">

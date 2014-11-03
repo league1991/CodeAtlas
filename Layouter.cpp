@@ -2,6 +2,7 @@
 #include "Layouter.h"
 
 using namespace CodeAtlas;
+using namespace ogdf;
 
 const float LayoutSetting::s_baseRadius = 10.f;
 const float LayoutSetting::s_wordAvgLength = 6;
@@ -92,7 +93,9 @@ void Layouter::mds(const MatrixXd& distMat,
 						   const VectorXi& hashID,
 						   MatrixXf& finalPos2D, 
 						   float& finalRadius,
-						   float  sparseFactor)
+						   float  sparseFactor,
+						   float  paddingRatio,
+						   float  minPadding)
 {
 	if (distMat.rows() <= 0 || distMat.cols() <= 0 || radiusVec.size() <= 0)
 	{
@@ -108,10 +111,9 @@ void Layouter::mds(const MatrixXd& distMat,
 	}
 	MatrixXd pos2D, finalPosd;
 	ClassicalMDSSolver::compute(distMat, pos2D); 
-
+	
 	VectorXd minPos, maxPos;
-	MDSPostProcesser m_postProcessor(5000, 1.0f, 1.0, 0.1, LayoutSetting::s_baseRadius * 10);
-	m_postProcessor.setSparseFactor(sparseFactor);
+	MDSPostProcesser m_postProcessor(5000, sparseFactor, 1.0, paddingRatio, minPadding);
 	m_postProcessor.set2DPos(pos2D, radiusVec.cast<double>(), &hashID);
 	m_postProcessor.compute();
 	m_postProcessor.getFinalPos(finalPosd);
@@ -196,8 +198,8 @@ bool TrivalLayouter::computePos()
 		float angle = d / c * twoPi;
 		float halfAng = 0.5 * angle;
 		float R = avgR;
-		if (angle < twoPi * 0.5)
-			R = r / sin(halfAng);
+// 		if (angle < twoPi * 0.5)
+// 			R = r / sin(halfAng);
 
 		anglePos += halfAng;
 		m_nodePos(ithChild, 0) = R * cos(anglePos);
@@ -465,10 +467,12 @@ bool Layouter::computeEdgeRoute(DelaunayCore::DelaunayRouter router)
 		return false;
 	router.compute();
 
+	QByteArray name = m_parent->getSymInfo().name().toLatin1();
+#ifdef WRITE_DELAUNAY_MESH
  	char buf[200];
- 	QByteArray name = m_parent->getSymInfo().name().toLatin1();
  	sprintf(buf, "H:\\Programs\\QtCreator\\qt-creator_master\\src\\plugins\\MyPlugin\\CodeAtlas\\triMesh_%s.obj", name.constData());
-// 	OpenMesh::IO::write_mesh(router.getRouteMesh(), buf);
+ 	OpenMesh::IO::write_mesh(router.getRouteMesh(), buf);
+#endif
 
 	// get edge weight vector
 	VectorXd	  edgeWeight	= fuzzyAttr->edgeWeightVector();
@@ -615,6 +619,69 @@ bool CodeAtlas::Layouter::computeVisualHull(float padding)
 	}
 	m_totalRadius = sqrt(bound[0]*bound[0] + bound[1]*bound[1]);
 	m_status &= ~WARNING_NO_VISUAL_HULL;
+	return true;
+}
+
+bool CodeAtlas::Layouter::graphLayout( const SparseMatrix& veMat, const VectorXf& radiusVec, MatrixXf& finalPos2D, float& finalRadius, float sparseFactor /*= 1.f*/ )
+{
+	Graph G;
+	GraphAttributes GA(G,
+		GraphAttributes::nodeGraphics | GraphAttributes::edgeGraphics);
+
+	const int nNodes = veMat.rows();
+	const int nEdges = veMat.cols();
+	if (nNodes <= 0 || nEdges < 1)
+		return false;
+
+	vector<node> nodeArray;
+	vector<edge> edgeArray;
+	NodeArray<float> nodeSize(G);
+	EdgeArray<double> edgeLength(G);
+	for (int i = 0; i < nNodes; ++i)
+	{
+		nodeArray.push_back(G.newNode());
+		float r = radiusVec[i];
+		GA.width(nodeArray.back()) = r*2;
+		GA.height(nodeArray.back()) = r*2;
+		nodeSize[nodeArray.back()] = r * 2;
+	}
+
+	for (int ithEdge = 0; ithEdge < nEdges; ++ithEdge)
+	{
+		int src, dst;
+		GraphUtility::getVtxFromEdge(veMat, ithEdge, src, dst);
+		edgeArray.push_back(G.newEdge(nodeArray[src], nodeArray[dst]));
+		edgeLength[edgeArray.back()] = 1;
+	}
+
+	MatrixXd pos;
+	pos.resize(nNodes, 2);
+
+	try
+	{
+		FMMMLayout layouter;
+		float avgRadius = radiusVec.sum();
+		float minRadius = radiusVec.minCoeff();
+		layouter.unitEdgeLength(avgRadius * 4);
+		layouter.call(GA);
+		for (int v = 0; v < nNodes; ++v)
+		{
+			double x = GA.x(nodeArray[v]);
+			double y = GA.y(nodeArray[v]);
+			pos(v,0) = x;
+			pos(v,1) = y;
+		}
+		MDSPostProcesser m_postProcessor(5000, sparseFactor, 1.0, 0.08, minRadius * 2);
+		m_postProcessor.set2DPos(pos, radiusVec.cast<double>());
+		m_postProcessor.compute();
+		m_postProcessor.getFinalPos(pos);
+		finalPos2D = pos.cast<float>();
+		finalRadius = m_postProcessor.getFinalRadius();
+	}
+	catch(...)//AlgorithmFailureException e
+	{
+		return false;
+	}
 	return true;
 }
 

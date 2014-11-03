@@ -1,5 +1,8 @@
 #pragma once
+//#define ONLY_USE_WORD_SIMILARITY
+//#define CHOOSE_IMPORTANT_EDGES
 
+#define OGDF_GRAPH_LAYOUT
 namespace CodeAtlas
 {
 
@@ -67,7 +70,6 @@ private:
 		QList<MatrixXf>& edgeList);
 
 	TrivalLayouter m_trivalLayouter;
-
 };
 
 }

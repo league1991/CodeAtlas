@@ -22,11 +22,21 @@ void ComponentLayouter::layoutByGraph( QVector<Component>& compInfo )
 		}
 		VectorXf rVec = comp.m_vtxRadius.head(nCompVtx);
 
+#ifdef OGDF_GRAPH_LAYOUT
+		if(!graphLayout(*comp.m_pVEIncidenceMat, rVec, comp.m_localPos2D, comp.m_radius, 0.8))
+		{
+			MatrixXf distMat;
+			VectorXf edgeLength = VectorXf::Ones(nCompEdge);
+			GraphUtility::computePairDist(*comp.m_pVEIncidenceMat, distMat, &edgeLength);
+			mds(distMat.cast<double>(), rVec, comp.m_hashID, comp.m_localPos2D, comp.m_radius, 1.2f, 0.15f, rVec.minCoeff());
+		}
+#else
  		MatrixXf distMat;
  		VectorXf edgeLength = VectorXf::Ones(nCompEdge).cwiseQuotient(comp.m_edgeWeight);
  		GraphUtility::computePairDist(*comp.m_pVEIncidenceMat, distMat, &edgeLength);
  		mds(distMat.cast<double>(), rVec, comp.m_hashID, comp.m_localPos2D, comp.m_radius);
-
+#endif
+		
 		//ComponentLayouter::orthoGraphLayout(*comp.m_pVEIncidenceMat, rVec, comp.m_localPos2D, comp.m_radius, comp.m_edgePath);
 
 		// 		MatrixXd laplacian;
@@ -71,7 +81,7 @@ void ComponentLayouter::layoutByWord( QVector<Component>& compInfo, float& final
 	}
 
 	MatrixXf finalPos2D;
-	Layouter::mds(distMat, rVec, hashVec, finalPos2D, finalRadius);
+	Layouter::mds(distMat, rVec, hashVec, finalPos2D, finalRadius, 0.8f, 0.01f, 0);
 
 	for (int ithComp = 0; ithComp < nComp; ++ithComp)
 		compInfo[ithComp].m_compPos2D = finalPos2D.row(ithComp);
@@ -289,10 +299,6 @@ void ComponentLayouter::orthoGraphLayout(const SparseMatrix& veIncidenceMat,
 		}
 	}
 
-	int t0 = clock();
-// 	char fileName[300];
-// 	sprintf(fileName, sizeof(fileName), "H:/Programs/QtCreator/qt-creator_master/src/plugins/MyPlugin/CodeAtlas/OGDF Result/graph%d.gml", t0);
-// 	GA.writeGML(fileName);
 }
 
 
@@ -306,7 +312,12 @@ bool CodeAtlas::ComponentLayouter::compute()
 	// for a interior node, find attribute
 	FuzzyDependAttr::Ptr fuzzyAttr = node->getAttr<FuzzyDependAttr>();
 
-	if (fuzzyAttr.isNull())
+
+#ifndef ONLY_USE_WORD_SIMILARITY
+	if (fuzzyAttr.isNull() || 
+		fuzzyAttr->edgeWeightVector().size() <= 0 || 
+		fuzzyAttr->vtxEdgeMatrix().cols() <= 0 ||
+		fuzzyAttr->vtxEdgeMatrix().rows() <= 0)
 	{
 		m_status |= WARNING_NO_EDGE;
 		if (!ComponentLayouter::compute(NULL, NULL, m_childList, m_nodePos, m_nodeRadius, m_totalRadius))
@@ -317,13 +328,68 @@ bool CodeAtlas::ComponentLayouter::compute()
 		// fill data used to compute layout
 		SparseMatrix& vtxEdgeMatrix = fuzzyAttr->vtxEdgeMatrix();
 		VectorXd&	  edgeWeight	= fuzzyAttr->edgeWeightVector();
+		
+#ifdef CHOOSE_IMPORTANT_EDGES
+		// filter edges		
+		VectorXi degreeVec;
+		degreeVec.setZero(vtxEdgeMatrix.rows());
+		for (int ithEdge = 0; ithEdge < vtxEdgeMatrix.cols(); ++ithEdge)
+		{
+			int src, tar;
+			GraphUtility::getVtxFromEdge(vtxEdgeMatrix, ithEdge, src, tar);
+			degreeVec[src]++;
+			degreeVec[tar]++;
+		}
+
+		float maxVal = degreeVec.maxCoeff();
+		float minVal = degreeVec.minCoeff();
+		const float ratio = 0.2f;
+		float threshold = min(minVal + (maxVal - minVal) * ratio, 3.f);
+
+		std::vector<Triplet> tripletArray;
+		std::vector<double> filteredEdgeArray;
+		for (int ithEdge = 0; ithEdge < edgeWeight.size(); ++ithEdge)
+		{
+			int src, tar;
+			GraphUtility::getVtxFromEdge(vtxEdgeMatrix, ithEdge, src, tar);
+			if (min(degreeVec[src], degreeVec[tar]) <= threshold)
+			{
+				tripletArray.push_back(Triplet(src, filteredEdgeArray.size() ,1.0));
+				tripletArray.push_back(Triplet(tar, filteredEdgeArray.size() ,-1.0));
+
+				filteredEdgeArray.push_back(edgeWeight[ithEdge]);
+			}
+		}
+		SparseMatrix filteredVEMat(vtxEdgeMatrix.rows(), filteredEdgeArray.size());
+		filteredVEMat.setFromTriplets(tripletArray.begin(), tripletArray.end());
+		VectorXd filteredEdgeVec(filteredEdgeArray.size());
+		memcpy(filteredEdgeVec.data(), &filteredEdgeArray[0], sizeof(double)*filteredEdgeArray.size());
+
+		if (!ComponentLayouter::compute(&filteredVEMat, &filteredEdgeVec, m_childList, m_nodePos, m_nodeRadius, m_totalRadius))
+			trivalLayout();
+#else
 		if (!ComponentLayouter::compute(&vtxEdgeMatrix, &edgeWeight, m_childList, m_nodePos, m_nodeRadius, m_totalRadius))
 			trivalLayout();
+#endif
 		qDebug("compute edge routes");
 		DelaunayCore::DelaunayRouter router;
 		router.setSmoothParam(0.5, 4); 
 		computeEdgeRoute(router);
 	}
+
+#else
+	if (!ComponentLayouter::compute(NULL, NULL, m_childList, m_nodePos, m_nodeRadius, m_totalRadius))
+		trivalLayout();
+	if (!fuzzyAttr.isNull())
+	{
+		m_status &= ~WARNING_NO_EDGE;
+		qDebug("compute edge routes");
+		DelaunayCore::DelaunayRouter router;
+		router.setSmoothParam(0.5, 4); 
+		computeEdgeRoute(router);
+	}
+#endif
+
 	if ((m_status & WARNING_TRIVAL_LAYOUT) == 0)
 		computeVisualHull(m_totalRadius * 0.05);
 
