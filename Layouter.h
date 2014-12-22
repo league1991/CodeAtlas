@@ -8,7 +8,7 @@
 #define EDGE_ROUTE_USE_BSPLINE
 //#define WRITE_DELAUNAY_MESH
 using namespace Eigen;
- 
+  
 namespace CodeAtlas
 {
 	class LayoutSetting
