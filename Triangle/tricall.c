@@ -53,7 +53,7 @@ int main()
   in.pointlist[2] = 1.0;
   in.pointlist[3] = 0.0;
   in.pointlist[4] = 1.0;
-  in.pointlist[5] = 10.0;
+  in.pointlist[5] = 1.0;
   in.pointlist[6] = 0.0;
   in.pointlist[7] = 1.0;
   in.pointattributelist = (REAL *) malloc(in.numberofpoints *
@@ -86,7 +86,7 @@ int main()
 //   in.regionlist[3] = 0.1;          /* Area constraint that will not be used. */
 
   printf("Input point set:\n\n");
-  report(&in, 0, 0, 0, 0, 0, 0);
+  reportresult(&in, 0, 0, 0, 0, 0, 0);
 
   /* Make necessary initializations so that Triangle can return a */
   /*   triangulation in `mid' and a voronoi diagram in `vorout'.  */
@@ -149,7 +149,7 @@ int main()
   triangulate("prazBP", &mid, &out, (struct triangulateio *) NULL);
 
   printf("Refined triangulation:\n\n");
-  report(&out, 0, 1, 0, 0, 0, 0);
+  reportresult(&out, 0, 1, 0, 0, 0, 0);
 
   /* Free all allocated arrays, including those allocated by Triangle. */
 
